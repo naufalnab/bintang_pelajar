@@ -66,7 +66,7 @@ class MapScreenState extends State<ProfilePage>
                                   shape: BoxShape.circle,
                                   image: new DecorationImage(
                                     image: new NetworkImage(
-                                        'https://media-exp1.licdn.com/dms/image/C5603AQEfM52j9hBIzg/profile-displayphoto-shrink_200_200/0?e=1610582400&v=beta&t=lYYh3ysCtmdZKS0ou2LmYNmKyxKycd0Tgv8GnqaqkpI'),
+                                        'https://media-exp1.licdn.com/dms/image/C510BAQGEeeql8qucVg/company-logo_200_200/0?e=2159024400&v=beta&t=7yQGHdnFgYg_UqJNJBeW4xKQRUTGDkLEJVnnxJHnlQ0'),
                                   ),
                                 )),
                           ],

@@ -18,6 +18,7 @@ class _State extends State<Login> {
 
   bool _isLoading = false;
   String token;
+  bool _hidePass = true;
 
 // fungsi untuk ke API server
   void signIn(String siswa_username, String siswa_password) async {
@@ -46,30 +47,30 @@ class _State extends State<Login> {
             context, new MaterialPageRoute(builder: (context) => HomeScreen()));
       }
     } else {
-        setState(() {
-          _isLoading == false;
-        });
-        print("Respon status: ${res.body}");
-        // set up the button
-        Widget okButton = FlatButton(
-          child: Text("${res.body}"),
-          onPressed: () { },
-        );
-        // set up the AlertDialog
-        AlertDialog alert = AlertDialog(
-          title: Text("Error"),
-          content: Text("username atau password salah"),
-          actions: [
-            okButton,
-          ],
-        );
-        // show the dialog
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return alert;
-          },
-        );
+      setState(() {
+        _isLoading == false;
+      });
+      print("Respon status: ${res.body}");
+      // set up the button
+      Widget okButton = FlatButton(
+        child: Text("${res.body}"),
+        onPressed: () {},
+      );
+      // set up the AlertDialog
+      AlertDialog alert = AlertDialog(
+        title: Text("Error"),
+        content: Text("username atau password salah"),
+        actions: [
+          okButton,
+        ],
+      );
+      // show the dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
     }
   }
 
@@ -105,7 +106,7 @@ class _State extends State<Login> {
                   height: 200,
                   width: MediaQuery.of(context).size.width,
                   decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
                   child: Column(
                     children: [
                       Padding(
@@ -113,7 +114,7 @@ class _State extends State<Login> {
                         child: TextField(
                           controller: _siswaUsernameController,
                           decoration:
-                              InputDecoration(hintText: "Siswa Username"),
+                          InputDecoration(hintText: "Siswa Username"),
                         ),
                       ),
                       SizedBox(
@@ -123,9 +124,20 @@ class _State extends State<Login> {
                         padding: const EdgeInsets.all(20),
                         child: TextField(
                           controller: _siswaPasswordController,
-                          obscureText: true,
-                          decoration:
-                              InputDecoration(hintText: "Siswa Password"),
+                          obscureText: _hidePass,
+                          decoration: InputDecoration(
+                              hintText: "Siswa Password",
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  _passwordTampil();
+                                },
+                                child: Icon(
+                                  _hidePass
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: _hidePass ? Colors.grey : Colors.blue,
+                                ),
+                              )),
                         ),
                       ),
                     ],
@@ -170,6 +182,12 @@ class _State extends State<Login> {
     );
   }
 
+  void _passwordTampil() {
+    setState(() {
+      _hidePass = !_hidePass;
+    });
+  }
+
   Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -180,12 +198,13 @@ class _State extends State<Login> {
       home: token == null ? new MyApp() : HomeScreen(),
     ));
   }
+
   void initState() {
     super.initState();
     getToken();
   }
 
-  Future <void> getToken() async {
+  Future<void> getToken() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     setState(() {
       token = sharedPreferences.getString('token');
