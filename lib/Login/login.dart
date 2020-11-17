@@ -26,7 +26,7 @@ class _State extends State<Login> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map body = {
       "siswa username": siswa_username,
-      "siswa password": siswa_password
+      "siswa password": siswa_password,
     };
     var jsonResponse;
     var res = await http.post(url, body: body);

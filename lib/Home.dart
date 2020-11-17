@@ -111,18 +111,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 'https://www.flaticon.com/svg/static/icons/svg/3135/3135715.svg',
                                 height: 50,
                               ),
-                              FlatButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ProfilePage()),
-                                  );
-                                },
-                                child: Text(
+                              Text(
                                   "Profile",
-                                ),
-                              )
+                              ),
                             ],
                           ),
                         ),
