@@ -51,18 +51,10 @@ class _State extends State<Login> {
         _isLoading == false;
       });
       print("Respon status: ${res.body}");
-      // set up the button
-      Widget okButton = FlatButton(
-        child: Text("${res.body}"),
-        onPressed: () {},
-      );
       // set up the AlertDialog
       AlertDialog alert = AlertDialog(
         title: Text("Error"),
         content: Text("username atau password salah"),
-        actions: [
-          okButton,
-        ],
       );
       // show the dialog
       showDialog(
