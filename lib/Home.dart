@@ -61,13 +61,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              'Naufal Nabila',
-                              style: TextStyle(
-                                  fontFamily: "Montserrat Medium",
-                                  color: Colors.white,
-                                  fontSize: 13),
-                            ),
+                            // Text(
+                            //   'Naufal Nabila',
+                            //   style: TextStyle(
+                            //       fontFamily: "Montserrat Medium",
+                            //       color: Colors.white,
+                            //       fontSize: 13),
+                            // ),
                             ButtonTheme(
                               minWidth: 15.0,
                               height: 15.0,
@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: <Widget>[
                               SvgPicture.network(
                                 'https://www.flaticon.com/svg/static/icons/svg/3135/3135715.svg',
-                                height: 50,
+                                height: 75,
                               ),
                               Text(
                                   "Profile",
@@ -126,20 +126,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: <Widget>[
                               SvgPicture.network(
                                 'https://www.flaticon.com/svg/static/icons/svg/3652/3652191.svg',
-                                height: 50,
+                                height: 75,
                               ),
-                              FlatButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => JadwalPage()),
-                                  );
-                                },
-                                child: Text(
+                              Text(
                                   "Jadwal Belajar",
                                 ),
-                              )
                             ],
                           ),
                         ),
@@ -152,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: <Widget>[
                               SvgPicture.network(
                                 'https://www.flaticon.com/svg/static/icons/svg/3048/3048425.svg',
-                                height: 50,
+                                height: 75,
                               ),
                               FlatButton(
                                 onPressed: () {
@@ -178,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: <Widget>[
                               SvgPicture.network(
                                 'https://www.flaticon.com/svg/static/icons/svg/327/327010.svg',
-                                height: 50,
+                                height: 75,
                               ),
                               Text(
                                 'Ujian Online',
@@ -196,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: <Widget>[
                               SvgPicture.network(
                                 'https://www.flaticon.com/svg/static/icons/svg/3576/3576313.svg',
-                                height: 50,
+                                height: 75,
                               ),
                               Text(
                                 'Psikotes Online',
@@ -214,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: <Widget>[
                               SvgPicture.network(
                                 'https://www.flaticon.com/svg/static/icons/svg/889/889061.svg',
-                                height: 50,
+                                height: 75,
                               ),
                               Text(
                                 'Konsultasi Online',
@@ -232,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: <Widget>[
                               SvgPicture.network(
                                 'https://www.flaticon.com/svg/static/icons/svg/3003/3003180.svg',
-                                height: 50,
+                                height: 75,
                               ),
                               FlatButton(
                                 onPressed: () {
@@ -258,7 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: <Widget>[
                               SvgPicture.network(
                                 'https://www.flaticon.com/svg/static/icons/svg/3380/3380975.svg',
-                                height: 50,
+                                height: 75,
                               ),
                               Text(
                                 'Prediksi PTN 2020',
@@ -276,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: <Widget>[
                               SvgPicture.network(
                                 'https://www.flaticon.com/svg/static/icons/svg/564/564576.svg',
-                                height: 50,
+                                height: 75,
                               ),
                               Text(
                                 'Simulasi PTN',
@@ -294,7 +285,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: <Widget>[
                               SvgPicture.network(
                                 'https://www.flaticon.com/svg/static/icons/svg/3750/3750027.svg',
-                                height: 50,
+                                height: 75,
                               ),
                               Text(
                                 'Info Perkembangan',
