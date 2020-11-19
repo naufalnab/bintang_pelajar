@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-
+import '../Bahan Belajar/Constant.dart';
 import '../Home.dart';
 import '../Main.dart';
 
@@ -24,14 +24,13 @@ class _State extends State<Login> {
 
 // fungsi untuk ke API server
   void signIn(String siswa_username, String siswa_password) async {
-    String url = "https://api.bintangpelajar.com/login";
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map body = {
       "siswa username": siswa_username,
       "siswa password": siswa_password,
     };
     var jsonResponse;
-    var res = await http.post(url, body: body);
+    var res = await http.post(Constant.urlLogin, body: body);
     // periksa status API
     if (res.statusCode == 200) {
       jsonResponse = json.decode(res.body);
