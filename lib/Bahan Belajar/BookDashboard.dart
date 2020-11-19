@@ -23,8 +23,6 @@ class BookDashboard extends StatefulWidget {
 }
 
 class _BookDashboardState extends State<BookDashboard> {
-
-  String url = "https://simteg.bintangpelajar.com/assets/fileuser/c0b4d1b4c4/";
   Map data;
   List userData;
 
