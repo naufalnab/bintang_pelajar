@@ -1,7 +1,5 @@
 import 'Bahan Belajar//BookDashboard.dart';
-import 'Jadwal%20Belajar/Jadwal.dart';
 import 'Login/login.dart';
-import 'Profile/Screens/ProfilePage.dart';
 import 'Video%20Pembelajaran/Video.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +13,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   Widget build(BuildContext context) {
-    // to get size
-    var size = MediaQuery.of(context).size;
-
     // style
     var cardTextStyle = TextStyle(
         fontFamily: "Montserrat Regular",
@@ -31,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: <Widget>[
           Container(
-            height: size.height * .3,
             decoration: BoxDecoration(
               image: DecorationImage(
                   alignment: Alignment.topCenter,
@@ -72,22 +65,23 @@ class _HomeScreenState extends State<HomeScreen> {
                               minWidth: 15.0,
                               height: 15.0,
                               child: RaisedButton(
-                              onPressed: () async {
-                                SharedPreferences sharedPreferences =
-                                    await SharedPreferences.getInstance();
-                                sharedPreferences.remove('token');
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Login()),
-                                );
-                              },
-                              child: Text(
-                                "Logout", style: TextStyle(fontSize: 10, color: Colors.white),
+                                onPressed: () async {
+                                  SharedPreferences sharedPreferences =
+                                      await SharedPreferences.getInstance();
+                                  sharedPreferences.remove('token');
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Login()),
+                                  );
+                                },
+                                child: Text(
+                                  "Logout",
+                                  style: TextStyle(
+                                      fontSize: 10, color: Colors.white),
+                                ),
                               ),
-                            ),
                             )
-                            
                           ],
                         )
                       ],
@@ -112,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: 75,
                               ),
                               Text(
-                                  "Profile",
+                                "Profile",
                               ),
                             ],
                           ),
@@ -129,8 +123,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: 75,
                               ),
                               Text(
-                                  "Jadwal Belajar",
-                                ),
+                                "Jadwal Belajar",
+                              ),
                             ],
                           ),
                         ),
