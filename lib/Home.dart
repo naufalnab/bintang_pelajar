@@ -15,9 +15,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    // to get size
-    var size = MediaQuery.of(context).size;
-
     // style
     var cardTextStyle = TextStyle(
         fontFamily: "Montserrat Regular",
@@ -28,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: <Widget>[
           Container(
-            height: size.height * .3,
             decoration: BoxDecoration(
               image: DecorationImage(
                   alignment: Alignment.topCenter,
