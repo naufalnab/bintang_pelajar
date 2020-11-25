@@ -66,24 +66,32 @@ class _MyVideoState extends State<Video> {
             ),
           ),
           ButtonBar(
-            alignment: MainAxisAlignment.start,
+            alignment: MainAxisAlignment.center,
             children: <Widget>[
-              ButtonTheme(
-                minWidth: 1,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(5.0),
-                  ),
-                  elevation: 3.0,
-                  color: Colors.blue,
-                  child: Icon(Icons.arrow_back, color: Colors.white,),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                    );
-                  },
-                ),
+              // RaisedButton(
+              //   child: Icon(Icons.arrow_back),
+              //   onPressed: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => HomeScreen()),
+              //     );
+              //   },
+              // ),
+              RaisedButton(
+                child: Icon(Icons.arrow_forward),
+                onPressed: () {
+                  if (_webViewController != null) {
+                    _webViewController.goForward();
+                  }
+                },
+              ),
+              RaisedButton(
+                child: Icon(Icons.refresh),
+                onPressed: () {
+                  if (_webViewController != null) {
+                    _webViewController.reload();
+                  }
+                },
               ),
             ],
           ),

@@ -10,24 +10,29 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:path_provider/path_provider.dart';
-
-void main() {
-  runApp(MaterialApp(
-    home: BookDashboard(),
-  ));
-}
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BookDashboard extends StatefulWidget {
+  final String token, nis, kelas, jurusan;
+  BookDashboard(this.token, this.nis, this.kelas, this.jurusan);
+
   @override
-  _BookDashboardState createState() => _BookDashboardState();
+  _BookDashboardState createState() => _BookDashboardState(token, nis, kelas, jurusan);
 }
 
 class _BookDashboardState extends State<BookDashboard> {
+
   Map data;
   List userData;
 
+  final String token, nis, kelas, jurusan;
+  _BookDashboardState(this.token, this.nis, this.kelas, this.jurusan);
+
   Future getData() async {
-    http.Response response = await http.get("https://api.bintangpelajar.com/api/bahanbelajar?q=oZhNJWb6YUQrFiwVhosTNuBdbYvdDB1HzROO2DLsYcaXdxhUXLSoBsgRvOOjDbU5znkY94baRA8tXVqN&k=5");
+    var url = Constant.urlApi;
+    var fullUrl= "https://api.bintangpelajar.com/api/bidangstudimateri?q=$token";
+    print(fullUrl);
+    http.Response response = await http.get(fullUrl);
     data = json.decode(response.body);
     setState(() {
       userData = data["data"];
@@ -51,7 +56,7 @@ class _BookDashboardState extends State<BookDashboard> {
         itemCount: userData == null ? 0 : userData.length,
         itemBuilder: (BuildContext context, int index) {
           String bookName = "${userData[index]["bds_ket"]}";
-          String bookPdf = Constant.urlPdf+"${userData[index]["materi_url"]}";
+          String bookPdf = Constant.urlSimteg+"/assets/fileuser/c0b4d1b4c4/"+"${userData[index]["materi_url"]}";
           return Card(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
@@ -82,6 +87,7 @@ class _BookDashboardState extends State<BookDashboard> {
       ),
     );
   }
+
 }
 
 class PDFScreen extends StatefulWidget {

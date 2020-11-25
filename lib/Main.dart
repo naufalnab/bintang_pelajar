@@ -1,14 +1,15 @@
-import 'Home.dart';
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:bintang_pelajar/Login/login.dart';
 
-import 'Login/login.dart';
+import 'package:flutter/material.dart';
+
+import 'Bahan Belajar/Constant.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyApp(),);
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
