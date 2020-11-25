@@ -68,15 +68,15 @@ class _MyVideoState extends State<Video> {
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
-              RaisedButton(
-                child: Icon(Icons.arrow_back),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
-                  );
-                },
-              ),
+              // RaisedButton(
+              //   child: Icon(Icons.arrow_back),
+              //   onPressed: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => HomeScreen()),
+              //     );
+              //   },
+              // ),
               RaisedButton(
                 child: Icon(Icons.arrow_forward),
                 onPressed: () {

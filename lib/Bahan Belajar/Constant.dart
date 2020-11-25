@@ -1,5 +1,7 @@
 class Constant {
-
-  static final String urlPdf = "https://simteg.bintangpelajar.com/assets/fileuser/c0b4d1b4c4/";
-   static final String urlLogin = "https://api.bintangpelajar.com/login";
+  static final String urlSimteg = "https://simteg.bintangpelajar.com";
+  static final String urlVideo = "https://simteg.bintangpelajar.com/api/videopembelajaran";
+  static final String keyToken = "diisi-dengan-token";
+  static final String urlApi = "https://api.bintangpelajar.com";
+  static final String kelas = "4";
 }
