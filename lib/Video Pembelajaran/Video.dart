@@ -68,31 +68,32 @@ class _MyVideoState extends State<Video> {
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
+              RaisedButton(
+                padding: EdgeInsets.only(left: 30, right: 30),
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(10)),
+                color: Colors.blue,
+                child: Text("Kembali"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
               // RaisedButton(
-              //   child: Icon(Icons.arrow_back),
+              //   child: Icon(Icons.arrow_forward),
               //   onPressed: () {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(builder: (context) => HomeScreen()),
-              //     );
+              //     if (_webViewController != null) {
+              //       _webViewController.goForward();
+              //     }
               //   },
               // ),
-              RaisedButton(
-                child: Icon(Icons.arrow_forward),
-                onPressed: () {
-                  if (_webViewController != null) {
-                    _webViewController.goForward();
-                  }
-                },
-              ),
-              RaisedButton(
-                child: Icon(Icons.refresh),
-                onPressed: () {
-                  if (_webViewController != null) {
-                    _webViewController.reload();
-                  }
-                },
-              ),
+              // RaisedButton(
+              //   child: Icon(Icons.refresh),
+              //   onPressed: () {
+              //     if (_webViewController != null) {
+              //       _webViewController.reload();
+              //     }
+              //   },
+              // ),
             ],
           ),
         ])),

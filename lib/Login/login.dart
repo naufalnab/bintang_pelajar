@@ -56,7 +56,7 @@ class _State extends State<Login> {
                   height: 200,
                   width: MediaQuery.of(context).size.width,
                   decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
                   child: Column(
                     children: [
                       Padding(
@@ -64,7 +64,7 @@ class _State extends State<Login> {
                         child: TextField(
                           controller: _siswaUsernameController,
                           decoration:
-                          InputDecoration(hintText: "Siswa Username"),
+                              InputDecoration(hintText: "Siswa Username"),
                         ),
                       ),
                       SizedBox(
@@ -114,8 +114,8 @@ class _State extends State<Login> {
                     });
                     _loadToken();
                     print("HEH: $cobaToken");
-                    signIn(_siswaUsernameController.text, _siswaPasswordController.text);
-
+                    signIn(_siswaUsernameController.text,
+                        _siswaPasswordController.text);
                   },
                 ),
               ),
@@ -132,6 +132,7 @@ class _State extends State<Login> {
       ),
     );
   }
+
   _saveData(String kirimToken, kirimNis, kirimKelas, kirimJurusan) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('token', kirimToken);
@@ -139,6 +140,7 @@ class _State extends State<Login> {
     prefs.setString('kelas', kirimKelas);
     prefs.setString('jurusan', kirimJurusan);
   }
+
   _loadToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -146,11 +148,13 @@ class _State extends State<Login> {
     });
     return cobaToken;
   }
+
   void _passwordTampil() {
     setState(() {
       _hidePass = !_hidePass;
     });
   }
+
   // fungsi untuk ke API server
   void signIn(String siswa_username, String siswa_password) async {
     Map body = {
@@ -176,7 +180,10 @@ class _State extends State<Login> {
           _isLoading = false;
         });
         Navigator.pushReplacement(
-            context, new MaterialPageRoute(builder: (context) => HomeScreen(token, nis, kelas, jurusan))); // Lanjutin disini yaaaaa@!@@@@@!!!
+            context,
+            new MaterialPageRoute(
+                builder: (context) => HomeScreen(token, nis, kelas,
+                    jurusan))); // Lanjutin disini yaaaaa@!@@@@@!!!
       }
     } else {
       setState(() {
@@ -197,6 +204,7 @@ class _State extends State<Login> {
       );
     }
   }
+
   void dispose() {
     _siswaUsernameController.dispose();
     _siswaPasswordController.dispose();
