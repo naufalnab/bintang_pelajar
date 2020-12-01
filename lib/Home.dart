@@ -12,24 +12,19 @@ class HomeScreen extends StatefulWidget {
   HomeScreen(this.token, this.nis, this.kelas, this.jurusan);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState(token, nis, kelas, jurusan);
+  _HomeScreenState createState() =>
+      _HomeScreenState(token, nis, kelas, jurusan);
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-<<<<<<< HEAD
-  @override
-  Widget build(BuildContext context) {
-=======
   final String token, nis, kelas, jurusan;
   _HomeScreenState(this.token, this.nis, this.kelas, this.jurusan);
 
   @override
   Widget build(BuildContext context) {
-
     // to get size
     var size = MediaQuery.of(context).size;
 
->>>>>>> af827c0579f6549b8eafc28f8ce3c294252bf485
     // style
     var cardTextStyle = TextStyle(
         fontFamily: "Montserrat Regular",
@@ -43,8 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
               image: DecorationImage(
                   alignment: Alignment.topCenter,
-                  image: AssetImage('assets/images/dashboard/top_header.png')
-              ),
+                  image: AssetImage('assets/images/dashboard/top_header.png')),
             ),
           ),
           SafeArea(
@@ -122,16 +116,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       alignment: Alignment.topCenter,
-                                      image: AssetImage('assets/images/dashboard/dashboard1.png')
-                                  ),
+                                      image: AssetImage(
+                                          'assets/images/dashboard/dashboard1.png')),
                                 ),
                               ),
                               Text(
-<<<<<<< HEAD
-                                "Profile",
-=======
                                 "Profil",
->>>>>>> af827c0579f6549b8eafc28f8ce3c294252bf485
                               ),
                             ],
                           ),
@@ -148,8 +138,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       alignment: Alignment.topCenter,
-                                      image: AssetImage('assets/images/dashboard/dashboard2.png')
-                                  ),
+                                      image: AssetImage(
+                                          'assets/images/dashboard/dashboard2.png')),
                                 ),
                               ),
                               Text(
@@ -170,8 +160,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       alignment: Alignment.topCenter,
-                                      image: AssetImage('assets/images/dashboard/dashboard3.png')
-                                  ),
+                                      image: AssetImage(
+                                          'assets/images/dashboard/dashboard3.png')),
                                 ),
                               ),
                               FlatButton(
@@ -179,7 +169,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => BookDashboard(token, nis, kelas, jurusan)),
+                                        builder: (context) => BookDashboard(
+                                            token, nis, kelas, jurusan)),
                                   );
                                 },
                                 child: Text(
@@ -201,8 +192,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       alignment: Alignment.topCenter,
-                                      image: AssetImage('assets/images/dashboard/dashboard4.png')
-                                  ),
+                                      image: AssetImage(
+                                          'assets/images/dashboard/dashboard4.png')),
                                 ),
                               ),
                               Text(
@@ -224,8 +215,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       alignment: Alignment.topCenter,
-                                      image: AssetImage('assets/images/dashboard/dashboard5.png')
-                                  ),
+                                      image: AssetImage(
+                                          'assets/images/dashboard/dashboard5.png')),
                                 ),
                               ),
                               Text(
@@ -247,8 +238,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       alignment: Alignment.topCenter,
-                                      image: AssetImage('assets/images/dashboard/dashboard6.png')
-                                  ),
+                                      image: AssetImage(
+                                          'assets/images/dashboard/dashboard6.png')),
                                 ),
                               ),
                               Text(
@@ -270,8 +261,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       alignment: Alignment.topCenter,
-                                      image: AssetImage('assets/images/dashboard/dashboard7.png')
-                                  ),
+                                      image: AssetImage(
+                                          'assets/images/dashboard/dashboard7.png')),
                                 ),
                               ),
                               FlatButton(
@@ -301,8 +292,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       alignment: Alignment.topCenter,
-                                      image: AssetImage('assets/images/dashboard/dashboard8.png')
-                                  ),
+                                      image: AssetImage(
+                                          'assets/images/dashboard/dashboard8.png')),
                                 ),
                               ),
                               Text(
@@ -324,8 +315,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       alignment: Alignment.topCenter,
-                                      image: AssetImage('assets/images/dashboard/dashboard9.png')
-                                  ),
+                                      image: AssetImage(
+                                          'assets/images/dashboard/dashboard9.png')),
                                 ),
                               ),
                               Text(
@@ -347,8 +338,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       alignment: Alignment.topCenter,
-                                      image: AssetImage('assets/images/dashboard/dashboard10.png')
-                                  ),
+                                      image: AssetImage(
+                                          'assets/images/dashboard/dashboard10.png')),
                                 ),
                               ),
                               Text(
