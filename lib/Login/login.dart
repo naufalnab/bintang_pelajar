@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,63 +14,21 @@ class Login extends StatefulWidget {
 }
 
 class _State extends State<Login> {
+  Map data;
+  var userData, token, nis, kelas, jurusan;
+  var cobaToken;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadToken();
+  }
+
   TextEditingController _siswaUsernameController = TextEditingController();
   TextEditingController _siswaPasswordController = TextEditingController();
 
   bool _isLoading = false;
-  String token;
   bool _hidePass = true;
-
-// fungsi untuk ke API server
-  void signIn(String siswa_username, String siswa_password) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    Map body = {
-      "siswa username": siswa_username,
-      "siswa password": siswa_password,
-    };
-    var jsonResponse;
-    var res = await http.post(Constant.urlLogin, body: body);
-    // periksa status API
-    if (res.statusCode == 200) {
-      jsonResponse = json.decode(res.body);
-
-      print("Respon status: ${res.statusCode}");
-      print("Respon status: ${res.body}");
-
-      if (jsonResponse != null) {
-        setState(() {
-          _isLoading = false;
-        });
-
-        sharedPreferences.setString("token", jsonResponse['token']);
-        Navigator.pushReplacement(
-            context, new MaterialPageRoute(builder: (context) => HomeScreen()));
-      }
-    } else {
-      setState(() {
-        _isLoading == false;
-      });
-      print("Respon status: ${res.body}");
-      // set up the AlertDialog
-      AlertDialog alert = AlertDialog(
-        title: Text("Error"),
-        content: Text("username atau password salah"),
-      );
-      // show the dialog
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-    }
-  }
-
-  void dispose() {
-    _siswaUsernameController.dispose();
-    _siswaPasswordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,9 +112,10 @@ class _State extends State<Login> {
                     setState(() {
                       _isLoading = true;
                     });
+                    _loadToken();
+                    print("HEH: $cobaToken");
+                    signIn(_siswaUsernameController.text, _siswaPasswordController.text);
 
-                    signIn(_siswaUsernameController.text,
-                        _siswaPasswordController.text);
                   },
                 ),
               ),
@@ -174,33 +132,74 @@ class _State extends State<Login> {
       ),
     );
   }
-
+  _saveData(String kirimToken, kirimNis, kirimKelas, kirimJurusan) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('token', kirimToken);
+    prefs.setString('nis', kirimNis);
+    prefs.setString('kelas', kirimKelas);
+    prefs.setString('jurusan', kirimJurusan);
+  }
+  _loadToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      cobaToken = (prefs.getString('token'));
+    });
+    return cobaToken;
+  }
   void _passwordTampil() {
     setState(() {
       _hidePass = !_hidePass;
     });
   }
+  // fungsi untuk ke API server
+  void signIn(String siswa_username, String siswa_password) async {
+    Map body = {
+      "siswa username": siswa_username,
+      "siswa password": siswa_password,
+    };
+    var jsonResponse;
+    var res = await http.post(Constant.urlApi + "/login", body: body);
+    // periksa status API
+    if (res.statusCode == 200) {
+      jsonResponse = json.decode(res.body);
+      List list = jsonResponse["data"];
+      token = list[0]['token'];
+      print("userData: $token");
+      print("Respon status: ${res.statusCode}");
+      print("Respon body: ${res.body}");
 
-  Future<void> main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    var token = sharedPreferences.getString('token');
-    print(token);
-    runApp(new MaterialApp(
-      title: "LMS Bintang Pelajar",
-      home: token == null ? new MyApp() : HomeScreen(),
-    ));
+      _saveData(token, nis, kelas, jurusan);
+      _loadToken();
+
+      if (jsonResponse != null) {
+        setState(() {
+          _isLoading = false;
+        });
+        Navigator.pushReplacement(
+            context, new MaterialPageRoute(builder: (context) => HomeScreen(token, nis, kelas, jurusan))); // Lanjutin disini yaaaaa@!@@@@@!!!
+      }
+    } else {
+      setState(() {
+        _isLoading == false;
+      });
+      print("Respon status: ${res.body}");
+      // set up the AlertDialog
+      AlertDialog alert = AlertDialog(
+        title: Text("Error"),
+        content: Text("username atau password salah"),
+      );
+      // show the dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    }
   }
-
-  void initState() {
-    super.initState();
-    getToken();
-  }
-
-  Future<void> getToken() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    setState(() {
-      token = sharedPreferences.getString('token');
-    });
+  void dispose() {
+    _siswaUsernameController.dispose();
+    _siswaPasswordController.dispose();
+    super.dispose();
   }
 }
