@@ -1,4 +1,5 @@
 import 'package:bintang_pelajar/Bahan%20Belajar/Constant.dart';
+import 'package:bintang_pelajar/Bahan%20Belajar/VideoDashboard.dart';
 
 import 'Bahan Belajar//BookDashboard.dart';
 import 'Login/login.dart';
@@ -8,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
-  final String token, nis, kelas, jurusan;
+  final String token, nis;
+  final int kelas, jurusan;
   HomeScreen(this.token, this.nis, this.kelas, this.jurusan);
 
   @override
@@ -17,7 +19,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final String token, nis, kelas, jurusan;
+  final String token, nis;
+  final int kelas, jurusan;
   _HomeScreenState(this.token, this.nis, this.kelas, this.jurusan);
 
   @override
@@ -270,7 +273,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Video()),
+                                        builder: (context) => VideoDashboard(token, nis, kelas, jurusan)),
                                   );
                                 },
                                 child: Text(
