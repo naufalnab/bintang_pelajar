@@ -13,24 +13,27 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BookDashboard extends StatefulWidget {
-  final String token, nis, kelas, jurusan;
+  final String token, nis;
+  final int kelas, jurusan;
   BookDashboard(this.token, this.nis, this.kelas, this.jurusan);
 
   @override
-  _BookDashboardState createState() => _BookDashboardState(token, nis, kelas, jurusan);
+  _BookDashboardState createState() =>
+      _BookDashboardState(token, nis, kelas, jurusan);
 }
 
 class _BookDashboardState extends State<BookDashboard> {
-
   Map data;
   List userData;
 
-  final String token, nis, kelas, jurusan;
+  final String token, nis;
+  final int kelas, jurusan;
   _BookDashboardState(this.token, this.nis, this.kelas, this.jurusan);
 
   Future getData() async {
     var url = Constant.urlApi;
-    var fullUrl= "https://api.bintangpelajar.com/api/bidangstudimateri?q=$token";
+    var fullUrl =
+        "https://api.bintangpelajar.com/api/bidangstudimateri?q=$token&k=$kelas&j=$jurusan";
     print(fullUrl);
     http.Response response = await http.get(fullUrl);
     data = json.decode(response.body);
@@ -56,7 +59,9 @@ class _BookDashboardState extends State<BookDashboard> {
         itemCount: userData == null ? 0 : userData.length,
         itemBuilder: (BuildContext context, int index) {
           String bookName = "${userData[index]["bds_ket"]}";
-          String bookPdf = Constant.urlSimteg+"/assets/fileuser/c0b4d1b4c4/"+"${userData[index]["materi_url"]}";
+          String bookPdf = Constant.urlSimteg +
+              "/assets/fileuser/c0b4d1b4c4/" +
+              "${userData[index]["materi_url"]}";
           return Card(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
@@ -64,7 +69,8 @@ class _BookDashboardState extends State<BookDashboard> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Text(bookName,
+                    child: Text(
+                      bookName,
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w700,
@@ -77,7 +83,11 @@ class _BookDashboardState extends State<BookDashboard> {
                         color: Color(0xffff6f00),
                       ),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>PDFScreen(bookName, bookPdf)));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    PDFScreen(bookName, bookPdf)));
                       }),
                 ],
               ),
@@ -87,7 +97,6 @@ class _BookDashboardState extends State<BookDashboard> {
       ),
     );
   }
-
 }
 
 class PDFScreen extends StatefulWidget {
@@ -130,19 +139,20 @@ class _MyAppState extends State<PDFScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return pathPDF == "" ? Scaffold(
-      appBar: AppBar(
-        title: Text(bookName),
-      ),
-      body: Center(
-        child: CircularProgressIndicator(),
-      ),
-    )
+    return pathPDF == ""
+        ? Scaffold(
+            appBar: AppBar(
+              title: Text(bookName),
+            ),
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
         : PDFViewerScaffold(
-      appBar: AppBar(
-        title: Text(bookName),
-      ),
-      path: pathPDF,
-    );
+            appBar: AppBar(
+              title: Text(bookName),
+            ),
+            path: pathPDF,
+          );
   }
 }

@@ -133,12 +133,12 @@ class _State extends State<Login> {
     );
   }
 
-  _saveData(String kirimToken, kirimNis, kirimKelas, kirimJurusan) async {
+  _saveData(String kirimToken, kirimNis, int kirimKelas, kirimJurusan) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('token', kirimToken);
     prefs.setString('nis', kirimNis);
-    prefs.setString('kelas', kirimKelas);
-    prefs.setString('jurusan', kirimJurusan);
+    prefs.setInt('kelas', kirimKelas);
+    prefs.setInt('jurusan', kirimJurusan);
   }
 
   _loadToken() async {
@@ -168,11 +168,17 @@ class _State extends State<Login> {
       jsonResponse = json.decode(res.body);
       List list = jsonResponse["data"];
       token = list[0]['token'];
-      print("userData: $token");
-      print("Respon status: ${res.statusCode}");
-      print("Respon body: ${res.body}");
+      nis = list[0]['nis'];
+      kelas = list[0]['kelas'];
+      jurusan = list[0]['jurusan'];
+
+      print("token: $token");
+      print("nis: ${nis}");
+      print("kelas: ${kelas}");
+      print("jurusan: ${jurusan}");
 
       _saveData(token, nis, kelas, jurusan);
+
       _loadToken();
 
       if (jsonResponse != null) {
@@ -182,8 +188,7 @@ class _State extends State<Login> {
         Navigator.pushReplacement(
             context,
             new MaterialPageRoute(
-                builder: (context) => HomeScreen(token, nis, kelas,
-                    jurusan))); // Lanjutin disini yaaaaa@!@@@@@!!!
+                builder: (context) => HomeScreen(token, nis, kelas, jurusan)));
       }
     } else {
       setState(() {
